@@ -260,6 +260,30 @@ Stop services:
 docker compose down
 ```
 
+## Stage 3 test candidates CSV
+
+The assessment requires a dedicated script that creates a new test user, runs the recommendation API, and stores the result in `test_candidates.csv`.
+
+Start the API first:
+
+```bash
+PYTHONPATH=src uvicorn floter_ai.api:app --host 127.0.0.1 --port 8000
+```
+
+In another terminal, run:
+
+```bash
+PYTHONPATH=src python scripts/generate_test_candidates.py
+```
+
+Generated output:
+
+```text
+data/test_candidates.csv
+```
+
+The script uses the `POST /recommendations/sample` endpoint, so the test user is not saved into `processed_data.csv`.
+
 ## Tests
 
 ```bash
