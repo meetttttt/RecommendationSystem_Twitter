@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Floter AI Recommendation API",
+    "description": "Postman collection for the two-stage recommendation backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "sample_user_id",
+      "value": "00029"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Top 10 Recommendations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/recommendations/{{sample_user_id}}?top_k=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "recommendations",
+            "{{sample_user_id}}"
+          ],
+          "query": [
+            {
+              "key": "top_k",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Top 5 Recommendations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/recommendations/{{sample_user_id}}?top_k=5",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "recommendations",
+            "{{sample_user_id}}"
+          ],
+          "query": [
+            {
+              "key": "top_k",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Recommendations for New Sample User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"new_user_001\",\n  \"age\": 28,\n  \"gender\": \"Female\",\n  \"city\": \"Mumbai\",\n  \"country\": \"India\",\n  \"interests\": [\"Technology\", \"Travel\", \"Music\"],\n  \"top_k\": 10\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/recommendations/sample",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "recommendations",
+            "sample"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Unknown User Example",
+      "request": {
+        "method": "GET",
+          "header": [],
+          "url": {
+          "raw": "{{base_url}}/recommendations/999998?top_k=5",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "recommendations",
+            "999998"
+          ],
+          "query": [
+            {
+              "key": "top_k",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

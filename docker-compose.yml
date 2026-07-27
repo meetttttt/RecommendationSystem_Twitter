@@ -1,0 +1,25 @@
+services:
+  floter-ai-recommender:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: floter-ai-recommender:latest
+    container_name: floter-ai-recommender
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  locust:
+    image: floter-ai-recommender:latest
+    container_name: floter-ai-locust
+    depends_on:
+      - floter-ai-recommender
+    command:
+      - locust
+      - -f
+      - load_tests/locustfile.py
+      - --host
+      - http://floter-ai-recommender:8000
+    ports:
+      - "8089:8089"
+    restart: unless-stopped

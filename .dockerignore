@@ -1,0 +1,11 @@
+.git
+.DS_Store
+__pycache__/
+*.pyc
+venv/
+.pytest_cache/
+EDA/
+docs/
+data/SocialMediaUsersDataset.csv
+data/sample_top10_recommendations.csv
+

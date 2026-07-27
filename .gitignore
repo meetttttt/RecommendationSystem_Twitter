@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Jupyter local runtime files
+.ipynb_checkpoints/
+
+# Environment/secrets
+.env
+.env.*
+!.env.example
+
+# Logs and runtime outputs
+*.log
+locust_stats*.csv
+locust_report*.html
+
+# Local generated sample output
+data/sample_top10_recommendations.csv
+
+# Keep the processed dataset and model artifact because the API/Docker image uses them.
+!data/processed_data.csv
+!models/neural_ranker.pt
+
+# Raw/source data and assessment docs can be large or private.
+data/SocialMediaUsersDataset.csv
+docs/
+
